@@ -1,43 +1,60 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
-import { MinusIcon, PlusIcon } from '@radix-ui/react-icons';
-
-import Chat from '@/components/chat';
+import { FormEvent, useEffect, useState } from 'react';
 import Header from '@/components/header';
 import { useCartStore } from '@/store/cart-store';
 import { MoviesType } from '@/types/movie';
+import { GetServerSidePropsContext } from 'next';
 
-interface Props {
-  params: { id: number };
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const res = await fetch(`http://localhost:3000/api/movies`);
+
+  if (!res.ok) {
+    console.error('A resposta da API não foi bem-sucedida');
+    return { props: { movies: [] } };
+  }
+
+  const movies = await res.json();
+
+  return { props: { movies, params: context.params } };
 }
 
-export default function MoviesDetailsPage({ params }: Props) {
+export default function MoviesDetailsPage({
+  params,
+  movies,
+}: {
+  params: { id: string };
+  movies: MoviesType[];
+}) {
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
-  const [openChat, setOpenChat] = useState(false);
   const [movie, setmovie] = useState<MoviesType>({} as MoviesType);
-  const [amount, setAmount] = useState(1);
 
-  const { addToCart } = useCartStore();
+  const { addToCart, cart } = useCartStore();
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    addToCart({
-      id: movie.id,
-      title: movie.title,
-      price: movie.price ?? 40,
-      amount: amount,
-      href: movie.href ?? '',
-      poster_path: movie.poster_path ?? '',
-      overview: movie.overview,
-    });
+    const isAlreadyInCart = cart.some((item) => item.id === movie.id);
+
+    if (!isAlreadyInCart) {
+      addToCart({
+        id: movie.id,
+        title: movie.title,
+        price: movie.price ?? 100,
+        amount: 1,
+        href: movie.href ?? '',
+        poster_path: movie.poster_path ?? '',
+        overview: movie.overview,
+      });
+    }
   }
 
-  // useEffect(() => {
-  //   .forEach((item: MoviesType) => item.id == params.id && setmovie(item));
-  // }, []);
+  useEffect(() => {
+    movies.forEach((item: MoviesType) => {
+      item.id == Number(params.id) && setmovie(item);
+    });
+  }, []);
 
   return (
     <>
@@ -48,7 +65,7 @@ export default function MoviesDetailsPage({ params }: Props) {
           <div className='mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8'>
             <div className='aspect-h-4 aspect-w-3 overflow-hidden rounded-lg'>
               <img
-                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}` ?? ''}
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}` ?? ''}
                 alt={movie.title}
                 className='h-full w-full object-cover object-center'
               />
@@ -64,34 +81,15 @@ export default function MoviesDetailsPage({ params }: Props) {
 
             <div className='mt-4 lg:row-span-3 lg:mt-0'>
               <h2 className='sr-only'>movie information</h2>
-              <p className='text-xl tracking-tight text-gray-900'>R$ {movie.price}</p>
+              <p className='text-xl tracking-tight text-gray-900'>R$ {movie.price ?? 100}</p>
 
               <form onSubmit={handleSubmit} className='mt-4'>
                 <button
                   type='submit'
-                  className='flex w-full items-center justify-center rounded-lg border border-transparent bg-amaranth py-2 text-lg font-bold text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
+                  className='flex w-full items-center justify-center rounded-lg border border-transparent bg-SteelBlue py-2 text-lg font-bold text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2'
                 >
                   ADICIONAR AO CARRINHO 🛒
                 </button>
-                <div className='mt-4 text-white w-full flex justify-center items-center gap-2'>
-                  <button
-                    onClick={() => amount > 1 && setAmount(amount - 1)}
-                    type='button'
-                    className='bg-amaranth h-12 w-12 rounded-full flex justify-center items-center'
-                  >
-                    <MinusIcon className='h-6 w-6' />
-                  </button>
-                  <span className='bg-amaranth h-12 w-16 flex justify-center items-center text-xl font-bold rounded-xl'>
-                    {amount}
-                  </span>
-                  <button
-                    onClick={() => setAmount(amount + 1)}
-                    type='button'
-                    className='bg-amaranth h-12 w-12 rounded-full flex justify-center items-center'
-                  >
-                    <PlusIcon className='h-6 w-6' />
-                  </button>
-                </div>
               </form>
             </div>
 
@@ -107,8 +105,6 @@ export default function MoviesDetailsPage({ params }: Props) {
           </div>
         </div>
       </main>
-
-      {openChat && <Chat props={{ setOpenChat }} />}
     </>
   );
 }

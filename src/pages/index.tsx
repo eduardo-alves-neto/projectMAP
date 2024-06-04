@@ -1,13 +1,11 @@
 'use client';
 
-import Chat from '@/components/chat';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import ListMovies from '@/components/list-movies';
 import Loading from '@/components/loading';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { MoviesType } from '@/types/movie';
-import { ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { Suspense, useState } from 'react';
 
@@ -27,7 +25,6 @@ export async function getServerSideProps() {
 export default function HomePage({ movies }: { movies: MoviesType[] }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
-  const [openChat, setOpenChat] = useState(false);
 
   return (
     <Suspense fallback={<Loading />}>
@@ -40,10 +37,7 @@ export default function HomePage({ movies }: { movies: MoviesType[] }) {
               <CarouselContent>
                 {movies?.map((banner, index) => (
                   <CarouselItem key={index}>
-                    <div
-                      style={{ border: '1px solid red' }}
-                      className='p-2 flex justify-center items-center'
-                    >
+                    <div className='p-2 flex justify-center items-center'>
                       <img
                         className='rounded-xl '
                         src={`https://image.tmdb.org/t/p/w400/${banner.poster_path}`}
@@ -71,15 +65,6 @@ export default function HomePage({ movies }: { movies: MoviesType[] }) {
           <ListMovies movies={movies} />
         </div>
       </div>
-
-      <button
-        onClick={() => setOpenChat(true)}
-        className='fixed bottom-4 right-4 p-3 bg-amaranth hover:bg-red-600 border border-white rounded-full flex justify-center items-center'
-      >
-        <ChatBubbleOvalLeftEllipsisIcon className='text-white h-8 w-8' />
-      </button>
-
-      {openChat && <Chat props={{ setOpenChat }} />}
 
       <Footer />
     </Suspense>

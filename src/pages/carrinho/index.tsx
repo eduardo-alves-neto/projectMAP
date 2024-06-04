@@ -31,7 +31,7 @@ export default function CartPage() {
             <div className='w-full mx-auto max-w-3xl'>
               <header className='text-center'>
                 <h1 className='uppercase text-xl font-bold text-gray-900 sm:text-2xl'>
-                  Seu Carrinho <span className='pl-3'>🛒</span>
+                  Seus filmes
                 </h1>
               </header>
 
@@ -42,7 +42,7 @@ export default function CartPage() {
                       {cart.map((movie, index) => (
                         <li key={index} className='flex items-center gap-4'>
                           <img
-                            src={`https://image.tmdb.org/t/p/w100/${movie.poster_path}`}
+                            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                             alt={movie.title}
                             className='size-16 rounded object-cover'
                           />
@@ -97,33 +97,33 @@ export default function CartPage() {
                       href='/moviesPage'
                       className='block rounded bg-zinc-200 p-2 text-sm text-black font-semibold tracking-wider transition hover:bg-zinc-300'
                     >
-                      Continuar comprando
+                      Continue navegando pelo catalogo
                     </Link>
                     <Link
                       href='#'
                       className='block rounded bg-amaranth p-2 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-red-600'
                     >
-                      Finalizar Pedido
+                      Finalizar compra
                     </Link>
                   </div>
                 </>
               ) : (
                 <>
                   <div className='my-12 flex justify-center items-center text-lg'>
-                    <p className='animate-pulse'>Nenhum produto no carrinho...</p>
+                    <p className='animate-pulse'>Nenhum filme no carrinho...</p>
                   </div>
                   <div className='w-full flex justify-center items-center gap-4 pt-6 -m-2'>
                     <Link
                       href='/moviesPage'
                       className='block rounded bg-zinc-200 p-2 text-sm text-black font-semibold tracking-wider transition hover:bg-zinc-300'
                     >
-                      Continuar comprando
+                      Continue navegando pelo catalogo
                     </Link>
                     <Link
                       href='#'
                       className='block rounded bg-amaranth p-2 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-red-600'
                     >
-                      Finalizar Pedido
+                      Finalizar compra
                     </Link>
                   </div>
                 </>

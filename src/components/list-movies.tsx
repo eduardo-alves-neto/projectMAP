@@ -45,34 +45,32 @@ export default function ListMovies({ movies }: { movies: MoviesType[] }) {
         <ul className='mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-4'>
           {movies?.length > 0 ? (
             movies?.map((movie, index) => (
-              <li key={index}>
-                <Link href={movie.href ?? ''} className='group block overflow-hidden'>
+              <li className='mt-4 border-2' key={index}>
+                <Link
+                  href={`${movie.href}/${movie.id}` ?? ''}
+                  className='group block overflow-hidden '
+                >
                   <img
-                    src={`https://image.tmdb.org/t/p/w200/${movie?.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
                     alt={movie.title}
                     className='h-[350px] sm:h-[250px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105'
                   />
 
-                  <div className='sm:h-28 relative bg-white pt-3 flex flex-col justify-between'>
-                    <h3 className='text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4'>
-                      {movie.title}
-                    </h3>
-
-                    <p className='mt-2'>
-                      <span className='sr-only'> Regular Price </span>
-
-                      <span className='tracking-wider text-gray-900'>
-                        {formatCurrency(movie.price ?? 40, 'BRL')}
-                      </span>
-                    </p>
+                  <div className='sm:h-28 relative bg-white pt-2 flex flex-col justify-between items-center text-center'>
+                    <h3>{movie.title}</h3>
                   </div>
                 </Link>
-                <button
-                  onClick={() => handleAddToCart(movie)}
-                  className='mt-2 flex justify-center items-center uppercase bg-SteelBlue font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]'
-                >
-                  <p className='text-md sm:text-xs sm:px-1'>Adicionar ao Carrinho</p>
-                </button>
+                <div className='flex justify-center mt-3'>
+                  <button
+                    onClick={() => handleAddToCart(movie)}
+                    className=' flex justify-center items-center uppercase bg-SteelBlue font-bold text-white text-md tracking-wide py-[0.5rem] w-full mr-2 rounded-[4px]'
+                  >
+                    <p className='text-md sm:text-xs sm:px-1'>🛒</p>
+                  </button>
+                  <button className='flex justify-center items-center uppercase bg-SteelBlue font-bold text-white text-md tracking-wide py-[0.5rem] w-full rounded-[4px]'>
+                    <p className='text-md sm:text-xs sm:px-1'>Alugar</p>
+                  </button>
+                </div>
               </li>
             ))
           ) : (

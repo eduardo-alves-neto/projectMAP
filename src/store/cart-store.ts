@@ -37,7 +37,7 @@ export const useCartStore = create<CartStore>((set, get) => {
       const cartItems: MoviesInCartType[] = get().cart;
       let total = 0;
       cartItems.forEach((item) => {
-        total += item.price * item.amount;
+        total += item.price;
       });
       return total;
     },

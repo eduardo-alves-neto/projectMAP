@@ -16,7 +16,7 @@ import { useCartStore } from '@/store/cart-store';
 const navigation = {
   pages: [
     { name: 'Página inical', href: '/' },
-    { name: 'Filmes', href: '/filmes' },
+    { name: 'Filmes', href: '/moviesPage' },
     { name: 'Carrinho', href: '/carrinho' },
   ],
 };

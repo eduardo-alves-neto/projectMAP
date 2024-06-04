@@ -140,7 +140,7 @@ export default function Cart({ props }: { props: CartProps }) {
                             className='font-medium text-amaranth hover:text-red-700'
                             onClick={() => setOpenCart(false)}
                           >
-                            Continue Comprando
+                            Continue navegando pelo catalogo
                             <span aria-hidden='true'> &rarr;</span>
                           </button>
                         </p>
