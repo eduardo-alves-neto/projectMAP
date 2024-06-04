@@ -20,4 +20,5 @@ export interface MovieInformation {
   collection_name?: string;
   collection_poster_path?: string;
   collection_backdrop_path?: string;
+  video_key?: string;
 }

@@ -88,7 +88,7 @@ export default function Cart({ props }: { props: CartProps }) {
                                       <div>
                                         <div className='flex justify-between text-base font-medium text-gray-900'>
                                           <h3>
-                                            <Link href={movie.href}>{movie.title}</Link>
+                                            <Link href={`/${movie.href}`}>{movie.title}</Link>
                                           </h3>
                                           <p className='ml-4'>
                                             {formatCurrency(movie.price * movie.amount, 'BRL')}
@@ -96,8 +96,6 @@ export default function Cart({ props }: { props: CartProps }) {
                                         </div>
                                       </div>
                                       <div className='flex flex-1 items-end justify-between text-sm'>
-                                        <p className='text-gray-500'>Quantidade: {movie.amount}</p>
-
                                         <div className='flex'>
                                           <button
                                             onClick={() => removeToCart(movie)}
@@ -126,7 +124,7 @@ export default function Cart({ props }: { props: CartProps }) {
 
                       <div className='mt-6'>
                         <Link
-                          href='/carrinho'
+                          href='/cart'
                           className='w-full flex items-center justify-center rounded-md border border-transparent bg-amaranth px-6 py-3 text-base font-bold text-white shadow-sm hover:bg-red-700'
                         >
                           Finalizar Compra

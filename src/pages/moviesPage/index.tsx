@@ -2,15 +2,14 @@
 
 import Link from 'next/link';
 import { FormEvent, Fragment, Suspense, useState } from 'react';
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
-import { ChatBubbleOvalLeftEllipsisIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid';
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { usePathname, useRouter } from 'next/navigation';
 
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import Loading from '@/components/loading';
-import ListMovies from '@/components/list-movies';
+import ListMovies from '@/components/listMovies';
 import fetch from 'node-fetch';
 import { MoviesType } from '@/types/movie';
 

@@ -2,7 +2,7 @@
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
-import ListMovies from '@/components/list-movies';
+import ListMovies from '@/components/listMovies';
 import Loading from '@/components/loading';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { MoviesType } from '@/types/movie';

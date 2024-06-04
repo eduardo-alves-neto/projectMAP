@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-
 import { MoviesInCartType } from '@/types/movie-in-cart';
 
 type CartStore = {
@@ -18,11 +17,10 @@ export const useCartStore = create<CartStore>((set, get) => {
         const existingMovie = state.cart.find((item) => item.id === movie.id);
 
         if (existingMovie) {
-          const cart = state.cart.map((item) =>
-            item.id === movie.id ? { ...item, amount: item.amount + movie.amount } : item,
-          );
-          return { cart };
-        } else return { cart: [...state.cart, movie] };
+          return state;
+        } else {
+          return { cart: [...state.cart, movie] };
+        }
       });
     },
     removeToCart: (item) => {

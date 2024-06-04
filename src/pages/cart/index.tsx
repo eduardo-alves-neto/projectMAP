@@ -1,15 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import { ChangeEvent, Suspense } from 'react';
+import { ChangeEvent, Suspense, useState } from 'react';
 import { TrashIcon } from '@radix-ui/react-icons';
 
 import Loading from '@/components/loading';
 import formatCurrency from '@/utils/format-currency';
 import { useCartStore } from '@/store/cart-store';
 import { MoviesInCartType } from '@/types/movie-in-cart';
+import Header from '@/components/header';
 
 export default function CartPage() {
+  const [openMenu, setOpenMenu] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
   const { cart, totalPrice, removeToCart, updateMovieInCart } = useCartStore();
 
   function handleAmountChange(event: ChangeEvent<HTMLInputElement>, movie: MoviesInCartType) {
@@ -25,6 +28,7 @@ export default function CartPage() {
 
   return (
     <Suspense fallback={<Loading />}>
+      <Header props={{ openMenu, setOpenMenu, openCart, setOpenCart }} />
       <main className='w-screen pb-8 pt-24 flex justify-center items-center max-h-[100vh]'>
         <section className='w-full'>
           <div className='mx-auto w-full max-w-screen-xl px-6 py-8 sm:px-6 sm:py-12 lg:px-8 flex flex-col justify-center items-center'>
