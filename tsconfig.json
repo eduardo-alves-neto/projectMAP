@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "scripts/script.ts",
+    "scripts/script.js",
     "src/pages/api/movies.mjs"
   ],
   "exclude": ["node_modules"]
