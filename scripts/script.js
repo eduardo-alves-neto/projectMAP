@@ -30,7 +30,6 @@ async function populateDatabase() {
           [movie.id, movie.title, movie.overview, movie.poster_path, 'moviesPage'],
         );
 
-        // Fetch additional movie details
         const movieDetailsResponse = await axios.get(
           `https://api.themoviedb.org/3/movie/${movie.id}?language=pt-BR`,
           {
@@ -39,7 +38,6 @@ async function populateDatabase() {
         );
         const movieDetails = movieDetailsResponse.data;
 
-        // Fetch movie video key
         const movieVideosResponse = await axios.get(
           `https://api.themoviedb.org/3/movie/${movie.id}/videos`,
           {
@@ -48,7 +46,6 @@ async function populateDatabase() {
         );
         const videoKey = movieVideosResponse.data.results[0]?.key;
 
-        // Insert movie details and video key into the new table
         await pool.query(
           'INSERT INTO moviesInformations (id, original_title, original_language, release_date, runtime_minutes, genres, overview, popularity, revenue, poster_url, official_website, tagline, production_companies, origin_country, vote_average, vote_count, collection_id, collection_name, collection_poster_path, collection_backdrop_path, backdrop_path, video_key) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22) ON CONFLICT (id) DO NOTHING',
           [
@@ -73,7 +70,7 @@ async function populateDatabase() {
             movieDetails.belongs_to_collection?.poster_path,
             movieDetails.belongs_to_collection?.backdrop_path,
             movieDetails.backdrop_path,
-            videoKey, // new value
+            videoKey,
           ],
         );
       } catch (error) {
