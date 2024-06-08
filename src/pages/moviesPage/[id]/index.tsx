@@ -6,7 +6,7 @@ import { useCartStore } from '@/store/cart-store';
 import { GetServerSidePropsContext } from 'next';
 import { MovieInformation } from '@/types/moviesInformations';
 import CreditCardModal from '@/components/cardCreditModal';
-import { MovieDetails } from '@/components/MovieDetails';
+import { MovieDetails } from '@/components/movieDetails';
 import { useToast } from '@/components/ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
 

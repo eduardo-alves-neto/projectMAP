@@ -53,7 +53,13 @@ export default function ListMovies({ movies }: { movies: MoviesType[] }) {
                     alt={movie.title}
                     className='h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105'
                   />
+                  <div className='p-1 flex justify-center items-center'>
+                    <h2 className='text-lg font-bold text-black overflow-ellipsis overflow-hidden whitespace-nowrap'>
+                      {movie.title}
+                    </h2>
+                  </div>
                 </Link>
+
                 <div className='flex justify-end mt-5'>
                   <button
                     onClick={() => handleAddToCart(movie)}
