@@ -4,25 +4,36 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import ListMovies from '@/components/listMovies';
 import Loading from '@/components/loading';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { MoviesType } from '@/types/movie';
+import { MovieInformation } from '@/types/moviesInformations';
 import Link from 'next/link';
 import { Suspense, useState } from 'react';
+import Banner from '@/components/banner';
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/movies`);
+  const resMovies = await fetch(`http://localhost:3000/api/movies`);
+  const resMoviesInformations = await fetch(
+    `http://localhost:3000/api/moviesInformations`
+  );
 
-  if (!res.ok) {
-    console.error('A resposta da API não foi bem-sucedida');
-    return { props: { movies: [] } };
+  if (!resMovies.ok || !resMoviesInformations.ok) {
+    console.error('response from API was not successful');
+    return { props: { movies: [], moviesInformations: [] } };
   }
 
-  const movies = await res.json();
+  const movies = await resMovies.json();
+  const moviesInformations = await resMoviesInformations.json();
 
-  return { props: { movies } };
+  return { props: { movies, moviesInformations } };
 }
 
-export default function HomePage({ movies }: { movies: MoviesType[] }) {
+export default function HomePage({
+  movies,
+  moviesInformations,
+}: {
+  movies: MoviesType[];
+  moviesInformations: MovieInformation[];
+}) {
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
 
@@ -30,40 +41,22 @@ export default function HomePage({ movies }: { movies: MoviesType[] }) {
     <Suspense fallback={<Loading />}>
       <Header props={{ openMenu, setOpenMenu, openCart, setOpenCart }} />
 
-      <div className='bg-white'>
-        <div className='mx-auto max-w-2xl pt-32 sm:px-6 lg:max-w-7xl lg:px-8'>
-          <div className='w-full mb-4 p-1 flex justify-center items-center'>
-            <Carousel className='w-full py-4'>
-              <CarouselContent>
-                {movies?.map((banner, index) => (
-                  <CarouselItem key={index}>
-                    <div className='p-2 flex justify-center items-center'>
-                      <img
-                        className='rounded-xl '
-                        src={`https://image.tmdb.org/t/p/w400/${banner.poster_path}`}
-                        alt={banner.title}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
+      <div className="bg-white">
+        <Banner moviesInformations={moviesInformations} />
 
-          <br />
-
-          <div className='flex justify-between items-center px-4 mb-12'>
-            <span className='text-2xl font-bold font-sans tracking-wide'>Mais assistidos</span>
-            <Link
-              href='/moviesPage'
-              className='hover:border-b hover:scale-105 border-black text-md sm:text-xl font-sans font-bold sm:font-semibold'
-            >
-              Ver Tudo
-            </Link>
-          </div>
-
-          <ListMovies movies={movies} />
+        <div className="mx-auto max-w-7xl pt-8 sm:px-6 lg:px-8 flex justify-between px-10">
+          <span className="text-2xl font-bold font-sans tracking-wide mr-4">
+            Mais assistidos
+          </span>
+          <Link
+            href="/moviesPage"
+            className="hover:border-b hover:scale-105 border-black text-md sm:text-xl font-sans font-bold sm:font-semibold"
+          >
+            Ver Tudo
+          </Link>
         </div>
+
+        <ListMovies movies={movies} />
       </div>
 
       <Footer />
