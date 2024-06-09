@@ -1,7 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import pool from './database';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handleMoviesRequest = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
   if (req.method === 'GET') {
     try {
       const result = await pool.query('SELECT * FROM movies');
@@ -16,3 +19,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 };
+
+export default handleMoviesRequest;

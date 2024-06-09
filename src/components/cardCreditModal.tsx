@@ -4,7 +4,10 @@ interface CreditCardModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-export default function CreditCardModal({ isOpen, onClose }: CreditCardModalProps) {
+export default function CreditCardModal({
+  isOpen,
+  onClose,
+}: CreditCardModalProps) {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
@@ -17,7 +20,7 @@ export default function CreditCardModal({ isOpen, onClose }: CreditCardModalProp
   return (
     isOpen && (
       <div
-        className='modal'
+        className="modal"
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -31,7 +34,7 @@ export default function CreditCardModal({ isOpen, onClose }: CreditCardModalProp
         }}
       >
         <div
-          className='modal-content'
+          className="modal-content"
           style={{
             backgroundColor: '#fff',
             padding: '20px',
@@ -40,59 +43,68 @@ export default function CreditCardModal({ isOpen, onClose }: CreditCardModalProp
             maxWidth: '500px',
           }}
         >
-          <span className='close' onClick={onClose}>
+          <span
+            className="close"
+            onClick={onClose}
+            onKeyDown={onClose}
+            role="button"
+            tabIndex={0}
+          >
             &times;
           </span>
-          <form onSubmit={handleSubmit} className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
-            <div className='mb-4'>
-              <label className='block text-gray-700 text-sm font-bold mb-2'>
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          >
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
                 Número do cartão:
                 <input
-                  type='text'
+                  type="text"
                   value={cardNumber}
                   onChange={(e) => setCardNumber(e.target.value)}
-                  className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
               </label>
             </div>
-            <div className='mb-4'>
-              <label className='block text-gray-700 text-sm font-bold mb-2'>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
                 Data de validade:
                 <input
-                  type='text'
+                  type="text"
                   value={expiryDate}
                   onChange={(e) => setExpiryDate(e.target.value)}
-                  className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
               </label>
             </div>
-            <div className='mb-4'>
-              <label className='block text-gray-700 text-sm font-bold mb-2'>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
                 CVV:
                 <input
-                  type='text'
+                  type="text"
                   value={cvv}
                   onChange={(e) => setCvv(e.target.value)}
-                  className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
               </label>
             </div>
-            <div className='mb-6'>
-              <label className='block text-gray-700 text-sm font-bold mb-2'>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
                 Nome do titular do cartão:
                 <input
-                  type='text'
+                  type="text"
                   value={cardHolderName}
                   onChange={(e) => setCardHolderName(e.target.value)}
-                  className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
               </label>
             </div>
-            <div className='flex items-center justify-between'>
+            <div className="flex items-center justify-between">
               <input
-                type='submit'
-                value='Confirmar pagamento'
-                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                type="submit"
+                value="Confirmar pagamento"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               />
             </div>
           </form>
