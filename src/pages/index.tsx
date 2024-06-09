@@ -41,23 +41,23 @@ export default function HomePage({
     <Suspense fallback={<Loading />}>
       <Header props={{ openMenu, setOpenMenu, openCart, setOpenCart }} />
 
-      <div className="bg-white">
+      <main>
         <Banner moviesInformations={moviesInformations} />
 
-        <div className="mx-auto max-w-7xl pt-8 sm:px-6 lg:px-8 flex justify-between px-10">
-          <span className="text-2xl font-bold font-sans tracking-wide mr-4">
+        <section className='mx-auto max-w-7xl pt-8 sm:px-6 lg:px-8 flex justify-between px-10'>
+          <h2 className='text-2xl font-bold font-sans tracking-wide mr-4'>
             Mais assistidos
-          </span>
+          </h2>
           <Link
-            href="/moviesPage"
-            className="hover:border-b hover:scale-105 border-black text-md sm:text-xl font-sans font-bold sm:font-semibold"
+            href='/moviesPage'
+            className='hover:border-b hover:scale-105 border-black text-md sm:text-xl font-sans font-bold sm:font-semibold'
           >
             Ver Tudo
           </Link>
-        </div>
+        </section>
 
         <ListMovies movies={movies} />
-      </div>
+      </main>
 
       <Footer />
     </Suspense>

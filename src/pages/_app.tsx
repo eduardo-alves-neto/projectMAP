@@ -9,10 +9,10 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className="overflow-x-hidden max-w-[100vw]">
+    <div className='overflow-x-hidden max-w-[100vw]'>
       <div className={inter.className}>
         <Head>
-          <link rel="icon" href="/favicon.png" />
+          <link rel='icon' href='/favicon.png' />
           <title> TMDB FILMES</title>
         </Head>
         <Component {...pageProps} />

@@ -71,59 +71,59 @@ export default function MoviesPage({ movies }: { movies: MoviesType[] }) {
     <Suspense fallback={<Loading />}>
       <Header props={{ openCart, setOpenCart, openMenu, setOpenMenu }} />
 
-      <main className="mx-auto w-full max-w-7xl px-0 sm:px-6 lg:px-8">
-        <div className="w-full flex items-center justify-end pb-6 px-4 sm:px-0 pt-24">
-          <div className="w-full flex items-center">
+      <main className='mx-auto w-full max-w-7xl px-0 sm:px-6 lg:px-8'>
+        <div className='w-full flex items-center justify-end pb-6 px-4 sm:px-0 pt-24'>
+          <div className='w-full flex items-center'>
             <Menu
-              as="div"
-              className="w-full text-left flex justify-between items-center"
+              as='div'
+              className='w-full text-left flex justify-between items-center'
             >
               <form
                 onSubmit={handleSubmit}
-                className="w-full flex justify-between items-center"
+                className='w-full flex justify-between items-center'
               >
-                <div className="relative">
+                <div className='relative'>
                   <input
-                    type="text"
-                    id="search"
-                    name="search"
-                    placeholder="O que está procurando?"
+                    type='text'
+                    id='search'
+                    name='search'
+                    placeholder='O que está procurando?'
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-80 sm:w-full rounded-xl border border-black pl-4 py-3 sm:py-2.5 pe-10 text-xs sm:text-sm"
+                    className='w-80 sm:w-full rounded-xl border border-black pl-4 py-3 sm:py-2.5 pe-10 text-xs sm:text-sm'
                   />
 
-                  <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
+                  <span className='absolute inset-y-0 end-0 grid w-10 place-content-center'>
                     <button
-                      type="submit"
-                      className="text-gray-600 hover:text-gray-700"
+                      type='submit'
+                      className='text-gray-600 hover:text-gray-700'
                     >
-                      <span className="sr-only">Search</span>
+                      <span className='sr-only'>Search</span>
 
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        color="black"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        className="h-4 w-4"
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        color='black'
+                        viewBox='0 0 24 24'
+                        stroke-width='1.5'
+                        stroke='currentColor'
+                        className='h-4 w-4'
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          d='M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z'
                         />
                       </svg>
                     </button>
                   </span>
                 </div>
                 <div>
-                  <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                  <Menu.Button className='group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900'>
                     Ordenar
                     <ChevronDownIcon
-                      className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
+                      className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500'
+                      aria-hidden='true'
                     />
                   </Menu.Button>
                 </div>
@@ -131,15 +131,15 @@ export default function MoviesPage({ movies }: { movies: MoviesType[] }) {
 
               <Transition
                 as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
+                enter='transition ease-out duration-100'
+                enterFrom='transform opacity-0 scale-95'
+                enterTo='transform opacity-100 scale-100'
+                leave='transition ease-in duration-75'
+                leaveFrom='transform opacity-100 scale-100'
+                leaveTo='transform opacity-0 scale-95'
               >
-                <Menu.Items className="absolute top-9 right-0 z-[1001] mt-2 w-40 origin-top-right rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div className="py-1">
+                <Menu.Items className='absolute top-9 right-0 z-[1001] mt-2 w-40 origin-top-right rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                  <div className='py-1'>
                     {sortOptions.map((option) => (
                       <Menu.Item key={option.name}>
                         {({ active }) => (
@@ -165,19 +165,19 @@ export default function MoviesPage({ movies }: { movies: MoviesType[] }) {
           </div>
         </div>
 
-        <section aria-labelledby="movies-heading" className="pb-24">
-          <h2 id="movies-heading" className="sr-only">
+        <section aria-labelledby='movies-heading' className='pb-24'>
+          <h2 id='movies-heading' className='sr-only'>
             Filmes
           </h2>
 
-          <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+          <div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4'>
             {/* movies grid */}
-            <div className="lg:col-span-3">
+            <div className='lg:col-span-3'>
               {showSearch && (
-                <div className="mb-12 mt-6 flex justify-center items-center text-lg">
+                <div className='mb-12 mt-6 flex justify-center items-center text-lg'>
                   <p>
                     Resultados para:{' '}
-                    <span className="font-semibold uppercase">{query}</span>
+                    <span className='font-semibold uppercase'>{query}</span>
                   </p>
                 </div>
               )}
