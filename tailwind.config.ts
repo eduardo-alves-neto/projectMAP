@@ -24,6 +24,7 @@ const config = {
         'aqua-island': '#A8DADC',
         amaranth: '#E63946',
         SteelBlue: '#4682B4',
+        green: '#008000',
 
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

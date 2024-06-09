@@ -3,12 +3,12 @@
 import Link from 'next/link';
 import { ChangeEvent, Suspense, useState } from 'react';
 import { TrashIcon } from '@radix-ui/react-icons';
-
 import Loading from '@/components/loading';
 import formatCurrency from '@/utils/format-currency';
 import { useCartStore } from '@/store/cart-store';
 import { MoviesInCartType } from '@/types/movie-in-cart';
 import Header from '@/components/header';
+import Image from 'next/image';
 
 export default function CartPage() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -48,9 +48,11 @@ export default function CartPage() {
                     <ul className='w-full space-y-4 max-h-[50vh] overflow-y-auto shadow p-4'>
                       {cart.map((movie, index) => (
                         <li key={index} className='flex items-center gap-4'>
-                          <img
+                          <Image
                             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                             alt={movie.title}
+                            width={100}
+                            height={100}
                             className='size-16 rounded object-cover'
                           />
 
@@ -65,9 +67,12 @@ export default function CartPage() {
                           </div>
 
                           <div className='flex flex-1 items-center justify-end gap-2'>
-                            <label className='sr-only'> Quantity </label>
+                            <label htmlFor='movieQuantity' className='sr-only'>
+                              Quantity
+                            </label>
 
                             <input
+                              id='movieQuantity'
                               type='number'
                               min={1}
                               value={movie.amount}
@@ -114,7 +119,7 @@ export default function CartPage() {
                     </Link>
                     <Link
                       href='#'
-                      className='block rounded bg-amaranth p-2 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-red-600'
+                      className='block rounded bg-green p-2 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-SteelBlue'
                     >
                       Finalizar compra
                     </Link>
@@ -134,7 +139,7 @@ export default function CartPage() {
                     </Link>
                     <Link
                       href='#'
-                      className='block rounded bg-amaranth p-2 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-red-600'
+                      className='block rounded bg-green p-2 text-sm text-gray-100 font-semibold tracking-wider transition hover:bg-SteelBlue'
                     >
                       Finalizar compra
                     </Link>

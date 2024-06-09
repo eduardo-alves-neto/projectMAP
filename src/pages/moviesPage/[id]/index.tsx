@@ -124,7 +124,7 @@ export default function MoviesDetailsPage({
               </div>
             </div>
 
-            <div className='p-6 mt-3 borde shadow-2xl border'>
+            <div className='p-6 mt-3 shadow-2xl border'>
               <p className='text-xl tracking-tight text-gray-900'>R$ {100}</p>
 
               <form
