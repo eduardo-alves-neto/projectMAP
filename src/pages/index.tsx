@@ -4,36 +4,14 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import ListMovies from '@/components/listMovies';
 import Loading from '@/components/loading';
-import { MoviesType } from '@/types/movie';
-import { MovieInformation } from '@/types/moviesInformations';
 import Link from 'next/link';
 import { Suspense, useState } from 'react';
 import Banner from '@/components/banner';
+import { useFetchMovies } from './hooks/useFetchMovies';
 
-export async function getServerSideProps() {
-  const resMovies = await fetch(`http://localhost:3000/api/movies`);
-  const resMoviesInformations = await fetch(
-    `http://localhost:3000/api/moviesInformations`
-  );
+export default function HomePage() {
+  const { movies, moviesInformations } = useFetchMovies();
 
-  if (!resMovies.ok || !resMoviesInformations.ok) {
-    console.error('response from API was not successful');
-    return { props: { movies: [], moviesInformations: [] } };
-  }
-
-  const movies = await resMovies.json();
-  const moviesInformations = await resMoviesInformations.json();
-
-  return { props: { movies, moviesInformations } };
-}
-
-export default function HomePage({
-  movies,
-  moviesInformations,
-}: {
-  movies: MoviesType[];
-  moviesInformations: MovieInformation[];
-}) {
   const [openMenu, setOpenMenu] = useState(false);
   const [openCart, setOpenCart] = useState(false);
 
