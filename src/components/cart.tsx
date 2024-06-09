@@ -7,6 +7,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import formatCurrency from '@/utils/format-currency';
 import { useCartStore } from '@/store/cart-store';
+import Image from 'next/image';
 
 interface CartProps {
   openCart: boolean;
@@ -67,20 +68,23 @@ export default function Cart({ props }: { props: CartProps }) {
 
                       {cart.length == 0 ? (
                         <div className='h-full flex justify-center items-center overflow-y-hidden'>
-                          <span className='animate-pulse'>Carrinho vazio...</span>
+                          <span className='animate-pulse'>
+                            Carrinho vazio...
+                          </span>
                         </div>
                       ) : (
                         <>
                           <div className='mt-8'>
                             <div className='flow-root'>
-                              <ul role='list' className='-my-6 divide-y divide-gray-200'>
+                              <ul className='-my-6 divide-y divide-gray-200'>
                                 {cart?.map((movie, index) => (
                                   <li key={index} className='flex py-6'>
-                                    <div className='h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200'>
-                                      <img
+                                    <div className='h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 relative'>
+                                      <Image
                                         src={`https://image.tmdb.org/t/p/w400/${movie.poster_path}`}
                                         alt={movie.title}
-                                        className='h-full w-full object-cover object-center'
+                                        layout='fill'
+                                        objectFit='cover'
                                       />
                                     </div>
 
@@ -88,10 +92,15 @@ export default function Cart({ props }: { props: CartProps }) {
                                       <div>
                                         <div className='flex justify-between text-base font-medium text-gray-900'>
                                           <h3>
-                                            <Link href={`/${movie.href}`}>{movie.title}</Link>
+                                            <Link href={`/${movie.href}`}>
+                                              {movie.title}
+                                            </Link>
                                           </h3>
                                           <p className='ml-4'>
-                                            {formatCurrency(movie.price * movie.amount, 'BRL')}
+                                            {formatCurrency(
+                                              movie.price * movie.amount,
+                                              'BRL'
+                                            )}
                                           </p>
                                         </div>
                                       </div>

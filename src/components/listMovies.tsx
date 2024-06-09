@@ -7,6 +7,7 @@ import { useCartStore } from '@/store/cart-store';
 import { useToast } from './ui/use-toast';
 import { ToastAction } from './ui/toast';
 import { MoviesType } from '@/types/movie';
+import Image from 'next/image';
 
 export default function ListMovies({ movies }: { movies: MoviesType[] }) {
   const { addToCart } = useCartStore();
@@ -48,11 +49,18 @@ export default function ListMovies({ movies }: { movies: MoviesType[] }) {
                   href={`${movie.href}/${movie.id}` ?? ''}
                   className='group block overflow-hidden'
                 >
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
-                    alt={movie.title}
-                    className='h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] w-full object-cover sm:object-contain transition duration-500 group-hover:scale-105'
-                  />
+                  <div className='relative h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] w-full'>
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
+                      alt={movie.title}
+                      layout='fill'
+                      objectFit='cover'
+                      className='transition duration-500 group-hover:scale-105'
+                    />
+                  </div>
+                  <h3 className='text-center text-lg font-bold mt-2 truncate'>
+                    {movie.title}
+                  </h3>
                 </Link>
                 <div className='flex justify-end mt-5'>
                   <button

@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    ignoreDuringBuilds: true
-  }
+    ignoreDuringBuilds: true,
+  },
+  images: {
+    domains: ['image.tmdb.org'],
+  },
 };
 
 export default nextConfig;

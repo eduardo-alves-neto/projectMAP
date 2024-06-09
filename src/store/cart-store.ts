@@ -24,11 +24,15 @@ export const useCartStore = create<CartStore>((set, get) => {
       });
     },
     removeToCart: (item) => {
-      set((state) => ({ cart: state.cart.filter((movie) => movie.id !== item.id) }));
+      set((state) => ({
+        cart: state.cart.filter((movie) => movie.id !== item.id),
+      }));
     },
     updateMovieInCart: (item) =>
       set((state) => {
-        const cart = state.cart.map((movie) => (movie.id === item.id ? item : movie));
+        const cart = state.cart.map((movie) =>
+          movie.id === item.id ? item : movie
+        );
         return { cart };
       }),
     totalPrice: () => {

@@ -61,7 +61,7 @@ export default function MoviesPage({ movies }: { movies: MoviesType[] }) {
     }
 
     const filteredmovies = movies.filter((movie) =>
-      movie.title.toLowerCase().includes(search.toLowerCase()),
+      movie.title.toLowerCase().includes(search.toLowerCase())
     );
     setMoviesData(filteredmovies);
     setShowSearch(true);
@@ -74,14 +74,19 @@ export default function MoviesPage({ movies }: { movies: MoviesType[] }) {
       <main className='mx-auto w-full max-w-7xl px-0 sm:px-6 lg:px-8'>
         <div className='w-full flex items-center justify-end pb-6 px-4 sm:px-0 pt-24'>
           <div className='w-full flex items-center'>
-            <Menu as='div' className='w-full text-left flex justify-between items-center'>
-              <form onSubmit={handleSubmit} className='w-full flex justify-between items-center'>
+            <Menu
+              as='div'
+              className='w-full text-left flex justify-between items-center'
+            >
+              <form
+                onSubmit={handleSubmit}
+                className='w-full flex justify-between items-center'
+              >
                 <div className='relative'>
-                  <label className='sr-only'> Search </label>
-
                   <input
                     type='text'
-                    id='Search'
+                    id='search'
+                    name='search'
                     placeholder='O que está procurando?'
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
@@ -89,7 +94,10 @@ export default function MoviesPage({ movies }: { movies: MoviesType[] }) {
                   />
 
                   <span className='absolute inset-y-0 end-0 grid w-10 place-content-center'>
-                    <button type='submit' className='text-gray-600 hover:text-gray-700'>
+                    <button
+                      type='submit'
+                      className='text-gray-600 hover:text-gray-700'
+                    >
                       <span className='sr-only'>Search</span>
 
                       <svg
@@ -138,9 +146,11 @@ export default function MoviesPage({ movies }: { movies: MoviesType[] }) {
                           <Link
                             href={option.href}
                             className={classNames(
-                              option.current ? 'font-medium text-gray-900' : 'text-gray-500',
+                              option.current
+                                ? 'font-medium text-gray-900'
+                                : 'text-gray-500',
                               active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm',
+                              'block px-4 py-2 text-sm'
                             )}
                           >
                             {option.name}
@@ -166,7 +176,8 @@ export default function MoviesPage({ movies }: { movies: MoviesType[] }) {
               {showSearch && (
                 <div className='mb-12 mt-6 flex justify-center items-center text-lg'>
                   <p>
-                    Resultados para: <span className='font-semibold uppercase'>{query}</span>
+                    Resultados para:{' '}
+                    <span className='font-semibold uppercase'>{query}</span>
                   </p>
                 </div>
               )}

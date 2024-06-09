@@ -7,7 +7,10 @@ export default function Footer() {
         <div className='grid grid-cols-1 gap-8 sm:grid-cols-2'>
           <div>
             <p>
-              <span className='text-xs uppercase tracking-wide text-gray-500'> Ligue </span>
+              <span className='text-xs uppercase tracking-wide text-gray-500'>
+                {' '}
+                Ligue{' '}
+              </span>
 
               <Link
                 href='#'
@@ -95,19 +98,28 @@ export default function Footer() {
           <div className='sm:flex sm:items-center sm:justify-between'>
             <ul className='flex flex-wrap gap-4 text-xs'>
               <li>
-                <Link href='#' className='text-gray-500 transition hover:opacity-75'>
+                <Link
+                  href='#'
+                  className='text-gray-500 transition hover:opacity-75'
+                >
                   Termos e Condições
                 </Link>
               </li>
 
               <li>
-                <Link href='#' className='text-gray-500 transition hover:opacity-75'>
+                <Link
+                  href='#'
+                  className='text-gray-500 transition hover:opacity-75'
+                >
                   Politica de Privacidade
                 </Link>
               </li>
 
               <li>
-                <Link href='#' className='text-gray-500 transition hover:opacity-75'>
+                <Link
+                  href='#'
+                  className='text-gray-500 transition hover:opacity-75'
+                >
                   Cookies
                 </Link>
               </li>

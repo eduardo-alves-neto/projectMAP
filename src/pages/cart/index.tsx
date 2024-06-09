@@ -15,7 +15,10 @@ export default function CartPage() {
   const [openCart, setOpenCart] = useState(false);
   const { cart, totalPrice, removeToCart, updateMovieInCart } = useCartStore();
 
-  function handleAmountChange(event: ChangeEvent<HTMLInputElement>, movie: MoviesInCartType) {
+  function handleAmountChange(
+    event: ChangeEvent<HTMLInputElement>,
+    movie: MoviesInCartType
+  ) {
     event.preventDefault();
 
     const updatedmovie = {
@@ -52,9 +55,13 @@ export default function CartPage() {
                           />
 
                           <div className='mt-0.5 space-y-px text-[10px] text-gray-600'>
-                            <h3 className='text-sm font-medium text-gray-900'>{movie.title}</h3>
+                            <h3 className='text-sm font-medium text-gray-900'>
+                              {movie.title}
+                            </h3>
                             <span className='inline pr-2'>Preço:</span>
-                            <span className='inline'>{formatCurrency(movie.price, 'BRL')}</span>
+                            <span className='inline'>
+                              {formatCurrency(movie.price, 'BRL')}
+                            </span>
                           </div>
 
                           <div className='flex flex-1 items-center justify-end gap-2'>
@@ -64,7 +71,9 @@ export default function CartPage() {
                               type='number'
                               min={1}
                               value={movie.amount}
-                              onChange={(event) => handleAmountChange(event, movie)}
+                              onChange={(event) =>
+                                handleAmountChange(event, movie)
+                              }
                               className='h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none'
                             />
                             <button

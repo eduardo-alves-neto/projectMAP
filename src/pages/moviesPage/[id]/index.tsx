@@ -9,6 +9,7 @@ import CreditCardModal from '@/components/cardCreditModal';
 import { MovieDetails } from '@/components/MovieDetails';
 import { useToast } from '@/components/ui/use-toast';
 import { ToastAction } from '@radix-ui/react-toast';
+import Image from 'next/image';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const res = await fetch(`http://localhost:3000/api/moviesInformations`);
@@ -72,7 +73,7 @@ export default function MoviesDetailsPage({
     movies.forEach((item: MovieInformation) => {
       item.id == Number(params.id) && setmovie(item);
     });
-  }, []);
+  }, [movies, params]);
 
   return (
     <>
@@ -83,7 +84,7 @@ export default function MoviesDetailsPage({
         <div>
           <div className='mx-auto max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8'>
             <div className='aspect-h-4 aspect-w-3 overflow-hidden rounded-lg'>
-              {!!movie?.video_key ? (
+              {movie?.video_key ? (
                 <iframe
                   src={`https://www.youtube.com/embed/68xkEZ4-nAs?autoplay=1&loop=1&playlist=${movie.video_key}`}
                   className='h-full w-full object-cover object-center'
@@ -91,11 +92,15 @@ export default function MoviesDetailsPage({
                   title={movie.original_title}
                 />
               ) : (
-                <img
-                  src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}` ?? ''}
-                  alt={movie.original_title}
-                  className='h-full w-full object-cover object-center'
-                />
+                <div className='relative w-full h-0 pb-[56.25%]'>
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path ?? ''}`}
+                    alt={movie.original_title}
+                    layout='fill'
+                    objectFit='cover'
+                    objectPosition='center'
+                  />
+                </div>
               )}
             </div>
             <div className='pl-4 pt-10'>

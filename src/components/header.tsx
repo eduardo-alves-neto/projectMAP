@@ -12,6 +12,7 @@ import {
 
 import Cart from '@/components/cart';
 import { useCartStore } from '@/store/cart-store';
+import Image from 'next/image';
 
 const navigation = {
   pages: [
@@ -38,7 +39,11 @@ export default function Header({ props }: { props: HeaderProps }) {
       <Cart props={{ openCart, setOpenCart }} />
 
       <Transition.Root show={openMenu} as={Fragment}>
-        <Dialog as='div' className='relative lg:hidden z-[1000]' onClose={setOpenMenu}>
+        <Dialog
+          as='div'
+          className='relative lg:hidden z-[1000]'
+          onClose={setOpenMenu}
+        >
           <Transition.Child
             as={Fragment}
             enter='transition-opacity ease-linear duration-300'
@@ -78,7 +83,10 @@ export default function Header({ props }: { props: HeaderProps }) {
                 <div className='space-y-6 border-gray-200 px-4 py-6'>
                   {navigation.pages.map((page, index) => (
                     <div key={index} className='flow-root'>
-                      <Link href={page.href} className='-m-2 block p-2 font-medium text-gray-900'>
+                      <Link
+                        href={page.href}
+                        className='-m-2 block p-2 font-medium text-gray-900'
+                      >
                         {page.name}
                       </Link>
                     </div>
@@ -87,12 +95,18 @@ export default function Header({ props }: { props: HeaderProps }) {
 
                 <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
                   <div className='flow-root'>
-                    <Link href='#' className='-m-2 block p-2 font-medium text-gray-900'>
+                    <Link
+                      href='#'
+                      className='-m-2 block p-2 font-medium text-gray-900'
+                    >
                       Fazer login
                     </Link>
                   </div>
                   <div className='flow-root'>
-                    <Link href='#' className='-m-2 block p-2 font-medium text-gray-900'>
+                    <Link
+                      href='#'
+                      className='-m-2 block p-2 font-medium text-gray-900'
+                    >
                       Criar conta
                     </Link>
                   </div>
@@ -123,7 +137,15 @@ export default function Header({ props }: { props: HeaderProps }) {
               <div className='pl-2 flex lg:pl-0'>
                 <Link href='/'>
                   <span className='sr-only'>Your Company</span>
-                  <img className='h-16 w-16 rounded-full' src='/LOGO.png' alt='' />
+                  <div className='h-16 w-16 rounded-full'>
+                    <Image
+                      src='/LOGO.png'
+                      alt='Logo'
+                      width={64}
+                      height={64}
+                      layout='responsive'
+                    />
+                  </div>
                 </Link>
               </div>
 
@@ -141,19 +163,31 @@ export default function Header({ props }: { props: HeaderProps }) {
 
               <div className='ml-auto flex items-center'>
                 <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
-                  <Link href='#' className='text-sm font-medium text-gray-700 hover:text-gray-800'>
+                  <Link
+                    href='#'
+                    className='text-sm font-medium text-gray-700 hover:text-gray-800'
+                  >
                     Fazer Login
                   </Link>
                   <span className='h-6 w-px bg-gray-200' aria-hidden='true' />
-                  <Link href='#' className='text-sm font-medium text-gray-700 hover:text-gray-800'>
+                  <Link
+                    href='#'
+                    className='text-sm font-medium text-gray-700 hover:text-gray-800'
+                  >
                     Criar Conta
                   </Link>
                 </div>
 
                 <div className='flex lg:ml-6'>
-                  <Link href='/moviesPage' className='p-2 text-gray-400 hover:text-gray-500'>
+                  <Link
+                    href='/moviesPage'
+                    className='p-2 text-gray-400 hover:text-gray-500'
+                  >
                     <span className='sr-only'>Search</span>
-                    <MagnifyingGlassIcon className='h-6 w-6' aria-hidden='true' />
+                    <MagnifyingGlassIcon
+                      className='h-6 w-6'
+                      aria-hidden='true'
+                    />
                   </Link>
                 </div>
 
