@@ -7,7 +7,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { usePathname, useRouter } from 'next/navigation';
 
 import Header from '@/components/header';
-import Footer from '@/components/footer';
+import Footer from '@/components/footer/footer';
 import Loading from '@/components/loading';
 import ListMovies from '@/components/listMovies';
 import fetch from 'node-fetch';

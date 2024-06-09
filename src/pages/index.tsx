@@ -1,6 +1,6 @@
 'use client';
 
-import Footer from '@/components/footer';
+import Footer from '@/components/footer/footer';
 import Header from '@/components/header';
 import ListMovies from '@/components/listMovies';
 import Loading from '@/components/loading';
