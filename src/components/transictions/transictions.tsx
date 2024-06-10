@@ -17,7 +17,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => (
     animate='enter'
     exit='exit'
     variants={variants}
-    transition={{ type: 'linear' }}
+    transition={{ type: 'linear', duration: 0.3 }}
   >
     {children}
   </motion.div>
