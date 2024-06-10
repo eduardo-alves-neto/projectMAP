@@ -134,22 +134,24 @@ export default function Cart({ props }: { props: CartProps }) {
                       <div className='mt-6'>
                         <Link
                           href='/cart'
-                          className='w-full flex items-center justify-center rounded-md border border-transparent bg-amaranth px-6 py-3 text-base font-bold text-white shadow-sm hover:bg-red-700'
+                          className='w-full flex items-center justify-center rounded-md border border-transparent bg-green px-6 py-3 text-base font-bold text-white shadow-sm hover:bg-SteelBlue'
                         >
                           Finalizar Compra
                         </Link>
                       </div>
                       <div className='mt-6 flex justify-center text-center text-sm text-gray-500'>
                         <p>
-                          ou{' '}
-                          <button
-                            type='button'
-                            className='font-medium text-amaranth hover:text-red-700'
-                            onClick={() => setOpenCart(false)}
-                          >
-                            Continue navegando pelo catalogo
-                            <span aria-hidden='true'> &rarr;</span>
-                          </button>
+                          ou
+                          <Link href='/moviesPage'>
+                            <button
+                              type='button'
+                              className='font-medium text-amaranth hover:text-red-700'
+                              onClick={() => setOpenCart(false)}
+                            >
+                              Continue navegando pelo catalogo
+                              <span aria-hidden='true'> &rarr;</span>
+                            </button>
+                          </Link>
                         </p>
                       </div>
                     </div>

@@ -67,7 +67,9 @@ export default function ListMovies({ movies }: { movies: MoviesType[] }) {
                     onClick={() => handleAddToCart(movie)}
                     className='flex justify-center items-center uppercase bg-SteelBlue font-bold text-white text-sm sm:text-md tracking-wide py-[0.5rem] w-full mr-2 rounded-[4px]'
                   >
-                    <p className='text-sm sm:text-md sm:px-1'>🛒</p>
+                    <p className='text-sm sm:text-md sm:px-1'>
+                      Adicionar ao Carrinho🛒
+                    </p>
                   </button>
                   <button className='flex justify-center items-center uppercase bg-SteelBlue font-bold text-white text-sm sm:text-md tracking-wide py-[0.5rem] w-full rounded-[4px]'>
                     <p className='text-sm sm:text-md sm:px-1'>Alugar</p>

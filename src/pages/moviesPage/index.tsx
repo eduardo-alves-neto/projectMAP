@@ -170,7 +170,7 @@ export default function MoviesPage({ movies }: { movies: MoviesType[] }) {
             Filmes
           </h2>
 
-          <div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4'>
+          <div className='grid grid-cols-1 :grid-cols-4'>
             <div className='lg:col-span-3'>
               {showSearch && (
                 <div className='mb-12 mt-6 flex justify-center items-center text-lg'>
