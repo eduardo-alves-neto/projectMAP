@@ -9,9 +9,9 @@ const handleMoviesRequest = async (
     try {
       const result = await pool.query('SELECT * FROM movies');
       res.status(200).json(result.rows);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Ocorreu um erro ao buscar os filmes' });
+    } catch (erro) {
+      console.error(erro);
+      res.status(500).json({ message: `Erro ao buscar os filmes: ${erro}` });
     }
   } else {
     // Handle any other HTTP method
